@@ -16,13 +16,20 @@
   <pre id="result"></pre>
 
   <script>
-    function buildTower() {
-      let floor = Number(document.getElementById("num1").value)
-      let ceiling = Number(document.getElementById("num2").value)
-      let towerString = ""
+    let towerString = ""
 
-      for(let i = 0; i < 6; i++) {
-        if(i == 2 || i == 3) {
+    function buildBase() {
+      for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 6; j++) {
+          towerString += "*"
+        }
+        towerString += "<br>"
+      }
+    }
+
+    function buildRoof() {
+      for (let i = 0; i < 6; i++) {
+        if (i == 2 || i == 3) {
           towerString += "*"
         } else {
           towerString += " "
@@ -30,16 +37,19 @@
       }
       towerString += "<br>"
 
-      for(let i = 0; i < 6; i++) {
-        if(i == 0 || i == 5) {
+      for (let i = 0; i < 6; i++) {
+        if (i == 0 || i == 5) {
           towerString += " "
         } else {
           towerString += "*"
         }
       }
       towerString += "<br>"
+    }
 
-      for (let i = 0; i < floor; i++) {       
+
+    function buildFloor(floor, ceiling) {
+      for (let i = 0; i < floor; i++) {
         for (let j = 0; j < 6; j++) {
           towerString += "*"
         }
@@ -55,13 +65,16 @@
           towerString += "<br>"
         }
       }
+    }
 
-      for (let i = 0; i < 2; i++) {
-        for (let j = 0; j < 6; j++) {
-          towerString += "*"
-        }
-        towerString += "<br>"
-      }
+    function buildTower() {
+      let floor = Number(document.getElementById("num1").value)
+      let ceiling = Number(document.getElementById("num2").value)
+      towerString = ""
+
+      buildRoof()
+      buildFloor(floor, ceiling)
+      buildBase()
       document.getElementById("result").innerHTML = towerString
     }
   </script>
