@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>Floor</h3>
+  <input id="num1" type="number" oninput="buildTower()"><br>
+  <h3>Ceiling</h3>
+  <input id="num2" type="number" oninput="buildTower()"><br>
+  <pre id="result"></pre>
+
+  <script>
+    function buildTower() {
+      let floor = Number(document.getElementById("num1").value)
+      let ceiling = Number(document.getElementById("num2").value)
+      let towerString = ""
+
+      for(let i = 0; i < 6; i++) {
+        if(i == 2 || i == 3) {
+          towerString += "*"
+        } else {
+          towerString += " "
+        }
+      }
+      towerString += "<br>"
+
+      for(let i = 0; i < 6; i++) {
+        if(i == 0 || i == 5) {
+          towerString += " "
+        } else {
+          towerString += "*"
+        }
+      }
+      towerString += "<br>"
+
+      for (let i = 0; i < floor; i++) {       
+        for (let j = 0; j < 6; j++) {
+          towerString += "*"
+        }
+        towerString += "<br>"
+        for (let i = 0; i < ceiling; i++) {
+          for (let j = 0; j < 6; j++) {
+            if (j == 0 || j == 5) {
+              towerString += " "
+            } else {
+              towerString += "*"
+            }
+          }
+          towerString += "<br>"
+        }
+      }
+
+      for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 6; j++) {
+          towerString += "*"
+        }
+        towerString += "<br>"
+      }
+      document.getElementById("result").innerHTML = towerString
+    }
+  </script>
+</body>
+
+</html>
